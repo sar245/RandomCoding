@@ -6,11 +6,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table( name = "Player" )
+@Table(name = "Player")
 public class Player {
 	@Id
 	@GeneratedValue(generator="increment")
-	@Column(name = "playerId")	
+	`
 	private int playerId;
 	@Column(name = "firstName")
 	private String firstName;
@@ -29,9 +29,8 @@ public class Player {
 	@Column(name = "primaryHand")
 	private String primaryHand;
 
-	public Player(int playerId, String firstName, String lastName,
-			String middleName, String country, String gender, Date dateOfBirth,
-			String placeOfBirth, String primaryHand) {
+	public Player(int playerId, String firstName, String lastName, String middleName, String country, String gender,
+			Date dateOfBirth, String placeOfBirth, String primaryHand) {
 		super();
 		this.playerId = playerId;
 		this.firstName = firstName;
@@ -52,7 +51,8 @@ public class Player {
 	}
 
 	/**
-	 * @param playerId the playerId to set
+	 * @param playerId
+	 *            the playerId to set
 	 */
 	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
@@ -66,7 +66,8 @@ public class Player {
 	}
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -80,7 +81,8 @@ public class Player {
 	}
 
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -94,7 +96,8 @@ public class Player {
 	}
 
 	/**
-	 * @param middleName the middleName to set
+	 * @param middleName
+	 *            the middleName to set
 	 */
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
@@ -108,7 +111,8 @@ public class Player {
 	}
 
 	/**
-	 * @param country the country to set
+	 * @param country
+	 *            the country to set
 	 */
 	public void setCountry(String country) {
 		this.country = country;
@@ -122,7 +126,8 @@ public class Player {
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -136,7 +141,8 @@ public class Player {
 	}
 
 	/**
-	 * @param dateOfBirth the dateOfBirth to set
+	 * @param dateOfBirth
+	 *            the dateOfBirth to set
 	 */
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
@@ -150,7 +156,8 @@ public class Player {
 	}
 
 	/**
-	 * @param placeOfBirth the placeOfBirth to set
+	 * @param placeOfBirth
+	 *            the placeOfBirth to set
 	 */
 	public void setPlaceOfBirth(String placeOfBirth) {
 		this.placeOfBirth = placeOfBirth;
@@ -164,10 +171,23 @@ public class Player {
 	}
 
 	/**
-	 * @param primaryHand the primaryHand to set
+	 * @param primaryHand
+	 *            the primaryHand to set
 	 */
 	public void setPrimaryHand(String primaryHand) {
 		this.primaryHand = primaryHand;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Player [playerId=" + playerId + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
+				+ middleName + ", country=" + country + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth
+				+ ", placeOfBirth=" + placeOfBirth + ", primaryHand=" + primaryHand + "]";
 	}
 
 }
