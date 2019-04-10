@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ import javax.persistence.Table;
 public class Game {
 
 	@Id
-	@GeneratedValue(generator = "increment")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "gameId")
 	private int gameId;
 
@@ -38,13 +39,10 @@ public class Game {
 	@Column(name = "notes")
 	private String notes;
 
-	@Column(name = "matchId")
-	private int matchId;
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "matchId", referencedColumnName = "matchId")
 	private Match match;
-	
+
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
 	private List<Point> points;
 
@@ -109,21 +107,6 @@ public class Game {
 	}
 
 	/**
-	 * @return the matchId
-	 */
-	public int getMatchId() {
-		return matchId;
-	}
-
-	/**
-	 * @param matchId
-	 *            the matchId to set
-	 */
-	public void setMatchId(int matchId) {
-		this.matchId = matchId;
-	}
-
-	/**
 	 * @return the match
 	 */
 	public Match getMatch() {
@@ -146,11 +129,20 @@ public class Game {
 	}
 
 	/**
-	 * @param points the points to set
+	 * @param points
+	 *            the points to set
 	 */
 	public void setPoints(List<Point> points) {
 		this.points = points;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Game [gameId=" + gameId + ", gameNumber=" + gameNumber + ", result=" + result + ", notes=" + notes
+				+ ", match=" + match + ", points=" + points + "]";
+	}
 
 }

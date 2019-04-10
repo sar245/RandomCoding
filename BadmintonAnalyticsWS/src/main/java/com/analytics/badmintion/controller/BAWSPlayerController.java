@@ -3,18 +3,16 @@
  */
 package com.analytics.badmintion.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-//import org.springframework.transaction.annotation.Transactional;
+import com.analytics.badmintion.beans.Player;
+import com.analytics.badmintion.data.PlayerRepository;
 
 /**
  * @author asubramanian
@@ -25,26 +23,32 @@ import org.springframework.stereotype.Repository;
 public class BAWSPlayerController {
 
 	@Autowired
-	private SessionFactory sessionFactory;
+	private PlayerRepository playerRepository;
 
 	/**
-	 * @return the sessionFactory
+	 * @return the playerRepository
 	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public PlayerRepository getPlayerRepository() {
+		return playerRepository;
 	}
 
 	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
+	 * @param playerRepository
+	 *            the playerRepository to set
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public void setPlayerRepository(PlayerRepository playerRepository) {
+		this.playerRepository = playerRepository;
 	}
 
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-	public @ResponseBody int getPlayer(@PathVariable("id") int id) {
+	public @ResponseBody Player getPlayer(@PathVariable("id") int id) {
+		return playerRepository.findOne(id);
+	}
 
-		return 0;
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public @ResponseBody String addPlayer(@RequestBody Player player) {
+		System.out.println("Player : " + player);
+		playerRepository.save(player);
+		return "Saved";
 	}
 }

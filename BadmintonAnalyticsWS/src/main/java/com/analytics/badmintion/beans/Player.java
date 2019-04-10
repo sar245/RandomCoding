@@ -1,16 +1,27 @@
 package com.analytics.badmintion.beans;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "Player")
-public class Player {
+public class Player implements Serializable {
+	
+	private static final long serialVersionUID = 2185574601230207424L;
 	@Id
-	@GeneratedValue(generator="increment")
-	`
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "playerId")
 	private int playerId;
 	@Column(name = "firstName")
 	private String firstName;
@@ -22,6 +33,8 @@ public class Player {
 	private String country;
 	@Column(name = "gender")
 	private String gender;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "dateOfBirth")
 	private Date dateOfBirth;
 	@Column(name = "placeOfBirth")
@@ -29,18 +42,24 @@ public class Player {
 	@Column(name = "primaryHand")
 	private String primaryHand;
 
-	public Player(int playerId, String firstName, String lastName, String middleName, String country, String gender,
-			Date dateOfBirth, String placeOfBirth, String primaryHand) {
+//	public Player(String firstName, String lastName, String middleName, String country, String gender,
+//			Date dateOfBirth, String placeOfBirth, String primaryHand) {
+//		super();
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.middleName = middleName;
+//		this.country = country;
+//		this.gender = gender;
+//		this.dateOfBirth = dateOfBirth;
+//		this.placeOfBirth = placeOfBirth;
+//		this.primaryHand = primaryHand;
+//	}
+
+	/**
+	 * 
+	 */
+	public Player() {
 		super();
-		this.playerId = playerId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.middleName = middleName;
-		this.country = country;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.placeOfBirth = placeOfBirth;
-		this.primaryHand = primaryHand;
 	}
 
 	/**

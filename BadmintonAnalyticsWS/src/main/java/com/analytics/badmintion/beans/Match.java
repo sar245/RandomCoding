@@ -9,11 +9,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Match {
 
 	@Id
-	@GeneratedValue(generator = "increment")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "matchId")
 	private int matchId;
 
@@ -43,10 +43,7 @@ public class Match {
 
 	@Column(name = "notes")
 	private String notes;
-
-	@Column(name = "tournamentId")
-	private int tournamentId;
-
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tournamentId", referencedColumnName = "tournamentId")
 	private Tournament tournament;
@@ -145,21 +142,6 @@ public class Match {
 	}
 
 	/**
-	 * @return the tournamentId
-	 */
-	public int getTournamentId() {
-		return tournamentId;
-	}
-
-	/**
-	 * @param tournamentId
-	 *            the tournamentId to set
-	 */
-	public void setTournamentId(int tournamentId) {
-		this.tournamentId = tournamentId;
-	}
-
-	/**
 	 * @return the tournament
 	 */
 	public Tournament getTournament() {
@@ -194,8 +176,8 @@ public class Match {
 	@Override
 	public String toString() {
 		return "Match [matchId=" + matchId + ", description=" + description + ", player1=" + player1 + ", player2="
-				+ player2 + ", result=" + result + ", notes=" + notes + ", tournamentId=" + tournamentId
-				+ ", tournament=" + tournament + ", games=" + games + "]";
+				+ player2 + ", result=" + result + ", notes=" + notes + ", tournament=" + tournament + ", games="
+				+ games + "]";
 	}
 
 

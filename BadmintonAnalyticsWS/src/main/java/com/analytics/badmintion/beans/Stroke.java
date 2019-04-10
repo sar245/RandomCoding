@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 public class Stroke {
 
 	@Id
-	@GeneratedValue(generator = "increment")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "strokeId")
 	private int strokeId;
 
@@ -33,9 +34,6 @@ public class Stroke {
 
 	@Column(name = "notes")
 	private String notes;
-
-	@Column(name = "pointId")
-	private int pointId;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pointId", referencedColumnName = "pointId")
@@ -102,21 +100,6 @@ public class Stroke {
 	}
 
 	/**
-	 * @return the pointId
-	 */
-	public int getPointId() {
-		return pointId;
-	}
-
-	/**
-	 * @param pointId
-	 *            the pointId to set
-	 */
-	public void setPointId(int pointId) {
-		this.pointId = pointId;
-	}
-
-	/**
 	 * @return the point
 	 */
 	public Point getPoint() {
@@ -131,15 +114,13 @@ public class Stroke {
 		this.point = point;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Stroke [strokeId=" + strokeId + ", shotId=" + shotId + ", handId=" + handId + ", notes=" + notes
-				+ ", pointId=" + pointId + ", point=" + point + "]";
+				+ ", point=" + point + "]";
 	}
 
 }
