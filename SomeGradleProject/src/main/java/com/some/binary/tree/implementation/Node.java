@@ -9,21 +9,21 @@ package com.some.binary.tree.implementation;
  */
 public class Node<T> {
 
-	private int value;
+	private T value;
 	private Node<T> left;
 	private Node<T> right;
 
 	/**
 	 * @param value
 	 */
-	public Node(int value) {
+	public Node(T value) {
 		this.value = value;
 	}
 
 	/**
 	 * @return the value
 	 */
-	public int getValue() {
+	public T getValue() {
 		return value;
 	}
 
@@ -31,7 +31,7 @@ public class Node<T> {
 	 * @param value
 	 *            the value to set
 	 */
-	public void setValue(int value) {
+	public void setValue(T value) {
 		this.value = value;
 	}
 
@@ -65,7 +65,9 @@ public class Node<T> {
 		this.right = right;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
