@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,12 +38,11 @@ public class Point {
 
 	@Column(name = "notes")
 	private String notes;
+	
+	@Column(name = "gameId")
+	private String gameId;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "gameId", referencedColumnName = "gameId")
-	private Game game;
-
-	@OneToMany(mappedBy = "point", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pointId")
 	private List<Stroke> strokes;
 
 	/**
@@ -105,21 +105,7 @@ public class Point {
 		this.notes = notes;
 	}
 
-	/**
-	 * @return the game
-	 */
-	public Game getGame() {
-		return game;
-	}
-
-	/**
-	 * @param game
-	 *            the game to set
-	 */
-	public void setGame(Game game) {
-		this.game = game;
-	}
-
+	
 	/**
 	 * @return the strokes
 	 */
@@ -135,15 +121,13 @@ public class Point {
 		this.strokes = strokes;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Point [pointId=" + pointId + ", servedBy=" + servedBy + ", result=" + result + ", notes=" + notes
-				+ ", game=" + game + ", strokes=" + strokes + "]";
+				+ ", gameId=" + gameId + ", strokes=" + strokes + "]";
 	}
 
 }

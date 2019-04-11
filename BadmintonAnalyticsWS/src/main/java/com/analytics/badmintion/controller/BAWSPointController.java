@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.analytics.badmintion.beans.Point;
+import com.analytics.badmintion.beans.Stroke;
 import com.analytics.badmintion.data.PointRepository;
+import com.analytics.badmintion.data.StrokeRepository;
 
 /**
  * @author Arun Ramachandran
@@ -24,6 +26,9 @@ public class BAWSPointController {
 
 	@Autowired
 	private PointRepository pointRepository;
+
+	@Autowired
+	private StrokeRepository strokeRepository;
 
 	/**
 	 * @return the pointRepository
@@ -40,6 +45,21 @@ public class BAWSPointController {
 		this.pointRepository = pointRepository;
 	}
 
+	/**
+	 * @return the strokeRepository
+	 */
+	public StrokeRepository getStrokeRepository() {
+		return strokeRepository;
+	}
+
+	/**
+	 * @param strokeRepository
+	 *            the strokeRepository to set
+	 */
+	public void setStrokeRepository(StrokeRepository strokeRepository) {
+		this.strokeRepository = strokeRepository;
+	}
+
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public @ResponseBody Point getPoint(@PathVariable("id") int id) {
 		return pointRepository.findOne(id);
@@ -47,8 +67,14 @@ public class BAWSPointController {
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public @ResponseBody String addPoint(@RequestBody Point point) {
-		System.out.println("Player : " + pointRepository);
+		System.out.println("point : " + point);
 		pointRepository.save(point);
+
+		for (Stroke stroke : point.getStrokes()) {
+			stroke.setPointId(point.getPointId());
+			System.out.println("Stroke : " + stroke);
+		}
+		strokeRepository.save(point.getStrokes());
 		return "Saved";
 	}
 }

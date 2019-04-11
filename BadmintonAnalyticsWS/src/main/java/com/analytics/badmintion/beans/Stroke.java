@@ -34,11 +34,10 @@ public class Stroke {
 
 	@Column(name = "notes")
 	private String notes;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pointId", referencedColumnName = "pointId")
-	private Point point;
-
+	
+	@Column(name = "pointId")
+	private int pointId;
+	
 	/**
 	 * @return the strokeId
 	 */
@@ -100,18 +99,17 @@ public class Stroke {
 	}
 
 	/**
-	 * @return the point
+	 * @return the pointId
 	 */
-	public Point getPoint() {
-		return point;
+	public int getPointId() {
+		return pointId;
 	}
 
 	/**
-	 * @param point
-	 *            the point to set
+	 * @param pointId the pointId to set
 	 */
-	public void setPoint(Point point) {
-		this.point = point;
+	public void setPointId(int pointId) {
+		this.pointId = pointId;
 	}
 
 	/* (non-Javadoc)
@@ -120,7 +118,9 @@ public class Stroke {
 	@Override
 	public String toString() {
 		return "Stroke [strokeId=" + strokeId + ", shotId=" + shotId + ", handId=" + handId + ", notes=" + notes
-				+ ", point=" + point + "]";
+				+ ", pointId=" + pointId + "]";
 	}
+
+	
 
 }

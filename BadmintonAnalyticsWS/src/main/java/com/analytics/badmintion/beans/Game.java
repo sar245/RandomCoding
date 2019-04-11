@@ -43,7 +43,7 @@ public class Game {
 	@JoinColumn(name = "matchId", referencedColumnName = "matchId")
 	private Match match;
 
-	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "gameId", cascade = CascadeType.ALL)
 	private List<Point> points;
 
 	/**
