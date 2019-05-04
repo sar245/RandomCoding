@@ -11,6 +11,8 @@ import java.util.List;
  *
  */
 public class PointFormBean implements Serializable {
+
+	private static final long serialVersionUID = -5547894863102655322L;
 	private String gameId;
 	private int servedBy;
 	private List<StrokeFormBean> strokes;
