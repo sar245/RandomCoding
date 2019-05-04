@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.analytics.badmintion.controller;
+package com.analytics.badmintion.controller.db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.analytics.badmintion.controller;
+package com.analytics.badmintion.controller.db;
 
 
 import org.springframework.stereotype.Controller;
