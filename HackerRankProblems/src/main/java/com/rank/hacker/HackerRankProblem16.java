@@ -30,7 +30,6 @@ public class HackerRankProblem16 {
 			if (sum == d)
 				count++;
 		}
-		;
 
 		return count;
 	}
