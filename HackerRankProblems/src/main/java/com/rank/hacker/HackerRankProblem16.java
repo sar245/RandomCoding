@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,16 +17,21 @@ public class HackerRankProblem16 {
 	// Complete the birthday function below.
 	static int birthday(List<Integer> s, int d, int m) {
 		int count = 0;
-		List<List<Integer>> lists =
-				IntStream.rangeClosed(0, 1)
-						.mapToObj(i -> s.subList(i, (i+m > s.size())?s.size():(i+m)))
-						.collect(Collectors.toList());
 		
+		List<List<Integer>> lists = new ArrayList<>();
+		for (int i = 0; i < s.size(); i++) {
+			if ((i+m) <= s.size()) {
+				lists.add(s.subList(i, i+m));
+			}
+		}
+
 		for (List<Integer> list : lists) {
 			int sum = list.stream().reduce(0, (a, b) -> a + b);
-			if (sum == d) count++;
-		};
-		
+			if (sum == d)
+				count++;
+		}
+		;
+
 		return count;
 	}
 
